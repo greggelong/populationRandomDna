@@ -5,9 +5,9 @@ let greg; //variable to hold gurtle
 let population=[];
 let pressed = false //for de bouncing
 function setup() {
-  createCanvas(windowWidth,windowHeight);
+  createCanvas(800,800);
   angleMode(DEGREES);
-  for (let i =0;i<50;i++){
+  for (let i =0;i<30;i++){
     population[i]= new Creature(color(128,255),10) // all the same elemet size
   
   }
@@ -28,7 +28,7 @@ function draw(){
     fill(255,255,0)
     textSize(30)
     noStroke()
-    text("Press to choose fate",10,100)
+    text("Press to do selection for fittest",10,100)
   } else{
     fill(255,0,0)
     textSize(30)
@@ -47,7 +47,7 @@ function mouseClicked(){
     // select branches 3 and over
      // count number of "push" branch in dna
      // i can do this in the creature when i create dna
-     if(population[i].pushNumber<5){
+     if(population[i].pushNumber<4){
       population[i].dying = true
       print(population[i].pushNumber)
      }

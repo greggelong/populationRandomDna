@@ -67,7 +67,7 @@ class Creature {
 
       for (let i = 0; i < this.gene2.length; i++) {
         // print(i, ins[i][0])
-        switch (this.gene2[i][0]) {
+        switch (this.gene2[i][0]) { // this only looks at character
           case "l":
             this.turtle.left(this.gene2[i].substring(1) * this.off);
 
@@ -80,10 +80,11 @@ class Creature {
           case "f":
             this.turtle.forward(this.sz);
             break;
-          case "push":
+          case "{":
             this.turtle.pushIt();
+            //print("pushed")
             break;
-          case "pop":
+          case "}":
             this.turtle.popIt();
             break;
         }
@@ -122,22 +123,22 @@ class Creature {
     let result = ["f"]; // always start with forward
     
     for (let i = 0; i < 10; i++) {
-    let gn = ["l", "r", "f", "push"];
+    let gn = ["l", "r", "f", "{"];
     let base = random(gn);
    
 
     // ten instructions long
    
       // push case
-      if (base === "push") {
-        result.push("push")
+      if (base === "{") {
+        result.push("{")
         pcount++
         let basein = ""; // set basin to bank be updated in whiel loop
-        while (basein !== "pop") {
-          basein = random(["l", "r", "f", "pop"]);
+        while (basein !== "}") {
+          basein = random(["l", "r", "f", "}"]);
           let nucleotide = "";
           if (basein === "l" || basein == "r") {
-            result.push(basein + floor(random(360))); // append random angle
+            result.push(basein + floor(random([30,45,60,75]))); // append random angle
             result.push("f"); // always push a forward after a turn
           } else {
             // this case will only be f
@@ -145,12 +146,12 @@ class Creature {
           }
         }
         // break while
-        result.push("pop");
+        result.push("}");
       }
       // other cases
       let nucleotide = "";
       if (base === "l" || base == "r") {
-        result.push(base + floor(random(360))); // append random angle
+        result.push(base + floor(random([30,45,60,75]))); // append random angle
         result.push("f"); // always push a forward after a turn
       } else {
         // this case will only be f
