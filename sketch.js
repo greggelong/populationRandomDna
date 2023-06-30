@@ -44,10 +44,12 @@ function mouseClicked(){
     pressed = true;
   if (!fated){
   for (let i =0;i<population.length;i++){
-     if(population[i].gene === fate){
+    // select branches 3 and over
+     // count number of "push" branch in dna
+     // i can do this in the creature when i create dna
+     if(population[i].pushNumber<5){
       population[i].dying = true
-    
-      
+      print(population[i].pushNumber)
      }
     fated = true
   }

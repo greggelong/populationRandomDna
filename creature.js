@@ -19,7 +19,9 @@ class Creature {
 
     this.gene = random([instr, instr2]);
     this.turtle = new Gurtle(this.x, this.y, clr);
+    this.pushNumber =0; // this will be set in the makeGene function
     this.gene2 = this.makeGene();
+    
     console.log(this.gene2);
   }
 
@@ -115,6 +117,7 @@ class Creature {
 
   makeGene() {
     // may need to constrain angles for better result
+    let pcount = 0
 
     let result = ["f"]; // always start with forward
     
@@ -128,6 +131,7 @@ class Creature {
       // push case
       if (base === "push") {
         result.push("push")
+        pcount++
         let basein = ""; // set basin to bank be updated in whiel loop
         while (basein !== "pop") {
           basein = random(["l", "r", "f", "pop"]);
@@ -153,6 +157,7 @@ class Creature {
         result.push("f");
       }
     }
+    this.pushNumber = pcount;
     return result;
   }
 }
