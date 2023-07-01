@@ -25,7 +25,7 @@ function draw(){
   }
   
   if (!fated){
-    fill(0,255,255)
+    fill(0,0,255)
     textSize(30)
     noStroke()
     text("Press to do selection for fittest",10,100)
