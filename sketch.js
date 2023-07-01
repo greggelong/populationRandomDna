@@ -1,5 +1,5 @@
 
-
+let creatureClr; 
 let fated = false;
 let greg; //variable to hold gurtle
 let population=[];
@@ -7,8 +7,9 @@ let pressed = false //for de bouncing
 function setup() {
   createCanvas(800,800);
   angleMode(DEGREES);
+  creatureClr = [color(35,69,103),color(22,133,99),color(0)]
   for (let i =0;i<30;i++){
-    population[i]= new Creature(color(0),10) // all the same elemet size
+    population[i]= new Creature(random(creatureClr),10) // all the same elemet size
   
   }
    
@@ -16,7 +17,7 @@ function setup() {
 
 
 function draw(){
-  background(255)
+  background(170,230,246)
   for (let i = 0; i<population.length; i++){
   population[i].showGene();
   population[i].squirm(frameCount)
