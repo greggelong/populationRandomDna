@@ -1,7 +1,7 @@
 class Creature {
   constructor(clr, sz) {
-    this.x = random(-width / 4, width + width / 4);
-    this.y = random(-height / 4, height + height / 4);
+    this.x = random(-width / 7, width + width / 7);
+    this.y = random(-height / 7, height + height / 7);
     this.sz = sz;
     this.clr = clr;
     this.angle = random(360);
@@ -63,7 +63,7 @@ class Creature {
       this.turtle.x = this.x;
       this.turtle.y = this.y;
       this.turtle.angle = this.angle;
-      strokeWeight(1 + this.sz / 10);
+      strokeWeight(1 + this.sz / 5);
 
       for (let i = 0; i < this.gene2.length; i++) {
         // print(i, ins[i][0])
@@ -97,8 +97,8 @@ class Creature {
   }
 
   move() {
-    this.x = map(noise(this.xoff), 0, 1, -width / 5, width + width / 5); //need to spread them out a bit
-    this.y = map(noise(this.yoff), 0, 1, -height / 5, height + height / 5);
+    this.x = map(noise(this.xoff), 0, 1, -width / 7, width + width / 7); //need to spread them out a bit
+    this.y = map(noise(this.yoff), 0, 1, -height / 7, height + height / 7);
     this.angle = noise(this.angoff) * 360;
     this.xoff += this.xincr;
     this.yoff += this.yincr;

@@ -8,7 +8,7 @@ function setup() {
   createCanvas(800,800);
   angleMode(DEGREES);
   for (let i =0;i<30;i++){
-    population[i]= new Creature(color(128,255),10) // all the same elemet size
+    population[i]= new Creature(color(0),10) // all the same elemet size
   
   }
    
@@ -16,7 +16,7 @@ function setup() {
 
 
 function draw(){
-  background(0)
+  background(255)
   for (let i = 0; i<population.length; i++){
   population[i].showGene();
   population[i].squirm(frameCount)
@@ -25,7 +25,7 @@ function draw(){
   }
   
   if (!fated){
-    fill(255,255,0)
+    fill(0,255,255)
     textSize(30)
     noStroke()
     text("Press to do selection for fittest",10,100)
