@@ -1,16 +1,15 @@
 class Gurtle{
-
-    constructor(x,y,clr){
+     /// changed gurtle not to set color but set in creature
+    constructor(x,y){
       this.x = x; 
       this.y = y;
-      this.clr = clr;
       this.angle = 0;
       this.stack = [];
     }
   
     forward(amt){
       // using polar coordinates
-      stroke(this.clr);
+      //stroke(this.clr);
       let x2 = this.x + amt * cos(this.angle);
       let y2 = this.y + amt * sin(this.angle);
       line(this.x,this.y,x2,y2);

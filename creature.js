@@ -1,9 +1,8 @@
 class Creature {
-  constructor(clr, sz) {
+  constructor(sz) {
     this.x = random(-width / 7, width + width / 7);
     this.y = random(-height / 7, height + height / 7);
     this.sz = sz;
-    this.clr = clr;
     this.angle = random(360);
     this.off = 1;
     this.deathClock = random(100, 500);
@@ -16,47 +15,14 @@ class Creature {
     this.yincr = random(0.0001, 0.001);
     this.anginc = random(0.0001, 0.001);
     this.phase = random(360);
-
+    this.segClrs = [color(35,69,103),color(22,133,99),color(0),color(255,0,0),color(255,255,0)]
     this.gene = random([instr, instr2]);
-    this.turtle = new Gurtle(this.x, this.y, clr);
+    this.turtle = new Gurtle(this.x, this.y);
     this.pushNumber =0; // this will be set in the makeGene function
     this.gene2 = this.makeGene();
     
-    console.log(this.gene2);
   }
-
-  show() {
-    if (!this.dead) {
-      this.turtle.x = this.x;
-      this.turtle.y = this.y;
-      this.turtle.angle = this.angle;
-      strokeWeight(1 + this.sz / 10);
-
-      for (let i = 0; i < this.gene.length; i++) {
-        // print(i, ins[i][0])
-        switch (this.gene[i][0]) {
-          case "l":
-            this.turtle.left(this.gene[i][1] * this.off);
-
-            break;
-
-          case "r":
-            this.turtle.right(this.gene[i][1] * this.off);
-
-            break;
-          case "f":
-            this.turtle.forward(this.sz);
-            break;
-          case "push":
-            this.turtle.pushIt();
-            break;
-          case "pop":
-            this.turtle.popIt();
-            break;
-        }
-      }
-    }
-  }
+ 
 
   showGene() {
     if (!this.dead) {
@@ -79,6 +45,8 @@ class Creature {
             break;
           case "f":
             this.turtle.forward(this.sz);
+            stroke(this.segClrs[this.gene2[i][1]]) // set the stroke from the gene the single digit that follows f
+            
             break;
           case "{":
             this.turtle.pushIt();
@@ -120,7 +88,7 @@ class Creature {
     // may need to constrain angles for better result
     let pcount = 0
 
-    let result = ["f"]; // always start with forward
+    let result = ["f0"]; // always start with forward and first color
     
     for (let i = 0; i < 10; i++) {
     let gn = ["l", "r", "f", "{"];
@@ -139,10 +107,10 @@ class Creature {
           let nucleotide = "";
           if (basein === "l" || basein == "r") {
             result.push(basein + floor(random([30,45,60,75]))); // append random angle
-            result.push("f"); // always push a forward after a turn
+            result.push("f"+floor(random(this.segClrs.length))); // always push a forward after a turn
           } else {
             // this case will only be f
-            result.push("f");
+            result.push("f"+floor(random(this.segClrs.length)));
           }
         }
         // break while
@@ -152,10 +120,10 @@ class Creature {
       let nucleotide = "";
       if (base === "l" || base == "r") {
         result.push(base + floor(random([30,45,60,75]))); // append random angle
-        result.push("f"); // always push a forward after a turn
+        result.push("f"+floor(random(this.segClrs.length))); // always push a forward after a turn
       } else {
         // this case will only be f
-        result.push("f");
+        result.push("f"+floor(random(this.segClrs.length)));
       }
     }
     this.pushNumber = pcount;
