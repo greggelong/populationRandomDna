@@ -7,7 +7,6 @@ let pressed = false //for de bouncing
 function setup() {
   createCanvas(800,800);
   angleMode(DEGREES);
-  creatureClr = [color(35,69,103),color(22,133,99),color(0)]
   for (let i =0;i<30;i++){
     population[i]= new Creature(10) // all the same elemet size
   

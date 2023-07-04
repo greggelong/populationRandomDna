@@ -29,7 +29,11 @@ class Creature {
       this.turtle.x = this.x;
       this.turtle.y = this.y;
       this.turtle.angle = this.angle;
+      noFill();
+     
       strokeWeight(1 + this.sz / 5);
+      stroke(0)
+      ellipse(this.x,this.y,this.sz*2,this.sz*2)
 
       for (let i = 0; i < this.gene2.length; i++) {
         // print(i, ins[i][0])
